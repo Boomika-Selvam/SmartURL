@@ -1,0 +1,28 @@
+<main class="auth-page">
+  <section class="auth-card card">
+    <div class="auth-copy">
+      <p class="eyebrow">Start fresh</p>
+      <h1>Create links people can remember.</h1>
+      <p>SmartURL turns long links into practical aliases that look clean in messages, posts, and notes.</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="auth-form">
+      <label class="label" for="name">Name</label>
+      <input id="name" class="field" type="text" formControlName="name" placeholder="Your name">
+
+      <label class="label" for="email">Email</label>
+      <input id="email" class="field" type="email" formControlName="email" placeholder="you@example.com">
+
+      <label class="label" for="password">Password</label>
+      <input id="password" class="field" type="password" formControlName="password" placeholder="At least 6 characters">
+
+      <button class="button" type="submit" [disabled]="loading">
+        {{ loading ? 'Creating account...' : 'Register' }}
+      </button>
+
+      <p class="message" *ngIf="message">{{ message }}</p>
+      <p class="switch">Already registered? <a routerLink="/login">Login</a></p>
+    </form>
+  </section>
+</main>
+

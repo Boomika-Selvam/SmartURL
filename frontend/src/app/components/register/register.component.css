@@ -1,0 +1,80 @@
+.auth-page {
+  min-height: calc(100vh - 72px);
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+.auth-card {
+  width: min(940px, 100%);
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  overflow: hidden;
+}
+
+.auth-copy {
+  padding: 54px;
+  background: linear-gradient(145deg, #24424f, #166d7a);
+  color: #fff;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: #f2c16b;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+h1 {
+  margin: 0 0 18px;
+  font-size: 42px;
+  line-height: 1.05;
+}
+
+.auth-copy p:last-child {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.7;
+}
+
+.auth-form {
+  padding: 44px;
+}
+
+.label {
+  margin-top: 16px;
+}
+
+.button {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.switch {
+  margin: 20px 0 0;
+  color: #6d7a86;
+  text-align: center;
+}
+
+.switch a {
+  color: #166d7a;
+  font-weight: 800;
+}
+
+@media (max-width: 780px) {
+  .auth-card {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-copy,
+  .auth-form {
+    padding: 32px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+}
+

@@ -1,0 +1,64 @@
+<main class="page">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Intelligent URL shortener</p>
+      <h1>Make long links short, readable, and easy to share.</h1>
+      <p class="subtitle">Paste a link, review simple alias suggestions, then create a clean short URL in seconds.</p>
+    </div>
+    <div class="stat-card card">
+      <strong>4-5</strong>
+      <span>smart alias ideas generated from each URL</span>
+    </div>
+  </section>
+
+  <section class="shortener card">
+    <label class="label" for="longUrl">Long URL</label>
+    <div class="url-row">
+      <input id="longUrl" class="field" type="url" [(ngModel)]="longUrl" placeholder="https://chatgpt.com/?utm_source=google">
+      <button class="button" type="button" (click)="analyze()" [disabled]="loadingSuggestions">
+        {{ loadingSuggestions ? 'Analyzing...' : 'Analyze' }}
+      </button>
+    </div>
+
+    <div class="suggestions" *ngIf="suggestions.length">
+      <p>Suggested aliases</p>
+      <div class="chips">
+        <button
+          type="button"
+          *ngFor="let suggestion of suggestions"
+          [class.selected]="selectedAlias === suggestion"
+          (click)="choose(suggestion)">
+          {{ suggestion }}
+        </button>
+      </div>
+    </div>
+
+    <div class="custom-grid">
+      <div>
+        <label class="label" for="customAlias">Custom alias</label>
+        <input
+  id="customAlias"
+  class="field"
+  type="text"
+  [(ngModel)]="customAlias"
+  [disabled]="aliasFromSuggestion"
+  placeholder="my-smart-link">
+      </div>
+      <button class="button create-button" type="button" (click)="create()" [disabled]="creating">
+        {{ creating ? 'Creating...' : 'Create Short URL' }}
+      </button>
+    </div>
+
+    <p class="message" *ngIf="message">{{ message }}</p>
+
+    <div class="result" *ngIf="createdUrl">
+      <div>
+        <span>Your short URL</span>
+        <strong>{{ createdUrl.shortUrl }}</strong>
+      </div>
+      <button type="button" class="button secondary" (click)="copy(createdUrl.shortUrl)">Copy</button>
+    </div>
+    <p class="message success" *ngIf="copyMessage">{{ copyMessage }}</p>
+  </section>
+</main>
+

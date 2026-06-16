@@ -1,0 +1,46 @@
+<main class="page">
+  <section class="dashboard-head">
+    <div>
+      <p class="eyebrow">Dashboard</p>
+      <h1>Your short URL history</h1>
+      <p>Track every link you created, copy old URLs, and remove links you no longer need.</p>
+    </div>
+    <a routerLink="/" class="button">Create New Link</a>
+  </section>
+
+  <p class="message success" *ngIf="message">{{ message }}</p>
+
+  <section class="card table-card">
+    <div class="loading" *ngIf="loading">Loading your URLs...</div>
+
+    <div class="empty" *ngIf="!loading && !urls.length">
+      <h2>No links yet</h2>
+      <p>Create your first SmartURL from the home page.</p>
+    </div>
+
+    <div class="table" *ngIf="!loading && urls.length">
+      <div class="table-head">
+        <span>Alias</span>
+        <span>Original URL</span>
+        <span>Created</span>
+        <span>Clicks</span>
+        <span>Actions</span>
+      </div>
+
+      <div class="table-row" *ngFor="let url of urls">
+        <div>
+          <strong>{{ url.alias }}</strong>
+          <small>{{ url.shortUrl }}</small>
+        </div>
+        <a [href]="url.originalUrl" target="_blank" rel="noopener">{{ url.originalUrl }}</a>
+        <span>{{ url.createdAt | date:'mediumDate' }}</span>
+        <span class="clicks">{{ url.clicks }}</span>
+        <div class="actions">
+          <button class="button secondary" type="button" (click)="copy(url.shortUrl)">Copy</button>
+          <button class="button danger" type="button" (click)="deleteUrl(url._id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
